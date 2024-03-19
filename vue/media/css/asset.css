@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+
+:root{
+    --whiteBlue : #CBEAE7;
+    --lightBlue : #a9d6f1;
+    --blue : #566592;
+    --darkBlue : #05123E;
+    --lightGreen : #D6F48F;
+    --lightYellow :#F4EC8F;
+    --lightRed : #F49B8F;
+    --lightOrange : #FFEEDD;
+    --lightGrey :  #dbdbdb;
+    --clr-red-dark: hsl(360, 67%, 44%);
+    --clr-red-light: hsl(360, 71%, 66%);
+    --transition: all 0.3s linear;
+    --fixed-width: 620px;
+    --radius: 0.5rem;
+    --clr-white: #fff;
+    --clr-primary-5: #49a6e9;
+}
+
+html{
+    width: 100vw;
+}
+body{
+    width: 100%;
+}
+
+
+#form_index {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px; 
+}
+/* Définitions des boutons light blue */ 
+.btn-outline-lightBlue{
+    
+    border: 1px solid var(--lightBlue);
+    border-radius: 5px 5px 5px 5px;
+    color: rgb(26, 26, 26);
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.btn-outline-lightBlue:hover{
+    background-color: var(--lightBlue);
+}
+
+
+/* Définition des boutons light grey */
+.btn-outline-lightGrey{
+    
+    border: 1px solid var(--lightGrey);
+    border-radius: 5px 5px 5px 5px;
+    color: rgb(26, 26, 26);
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.btn-outline-lightGrey:hover{
+    background-color: var(--lightGrey);
+}
+/*Definition des variables - WHITE BLUE */
+.btn-whiteBlue {
+    color: var(--darkBlue);
+    background-color:var(--whiteBlue);
+    border-color:var(--whiteBlue);
+}
+
+.bg-whiteBlue {
+    background-color: var(--whiteBlue);
+    color: var(--darkBlue);
+}
+
+.text-whiteBlue{
+    color:var(--whiteBlue);
+}
+
+/*Definition des variables - LIGHT BLUE */
+.btn-lightBlue {
+    color: var(--darkBlue);
+    background-color:var(--lightBlue);
+    border-color:var(--lightBlue);
+}
+
+.bg-lightBlue {
+    background-color: var(--lightBlue);
+    color: var(--darkBlue);
+}
+
+.text-lightBlue{
+    color:var(--lightBlue);
+}
+
+/*Definition des variables - BLUE */
+.btn-blue {
+    background-color:var(--blue);
+    border-color:var(--blue);
+    color: white;
+}
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.text-blue{
+    color:var(--blue);
+}
+
+/*Definition des variables - DARK BLUE */
+.btn-darkBlue {
+    color: white;
+    background-color:var(--darkBlue);
+    border-color:var(--darkBlue);
+}
+
+.bg-darkBlue {
+    background-color: var(--darkBlue);
+    color: white;
+}
+
+.text-darkBlue{
+    color:var(--darkBlue);
+}
+
+#logo{
+	  display: block;
+      margin-left: auto;
+      margin-right: auto;
+}
+/* Définition des variables - LIGHT GREEN */ 
+
+.bg-lightGreen{
+    background-color: var(--lightGreen) !important;
+}
+
+.btn-lightGreen{
+    background-color: var(--lightGreen);
+}
+
+/* Définition des variables - LIGHT YELLOW */ 
+
+.bg-lightYellow{
+    background-color: var(--lightYellow);
+}
+
+/* Définition des variables - LIGHT RED */ 
+
+.bg-lightRed{
+    background-color: var(--lightRed);
+}
+
+.bg-blueWhite{
+    background-color: #ddecff;
+}
+
+/*Definition des variables - LIGHT ORANGE */
+.btn-lightOrange {
+    color: var(--darkBlue);
+    background-color:var(--lightOrange);
+    border-color:var(--lightOrange);
+}
+
+.bg-lightOrange {
+    background-color: var(--lightOrange);
+    color: var(--darkBlue);
+}
+
+.text-lightOrange{
+    color:var(--lightOrange);
+}
+
+/* COLLAPSE BTN */ 
+
+#CollapseBar[aria-expanded=true] #btnCollapse .fa-circle-plus {
+    display: none;
+ }
+
+ #CollapseBar[aria-expanded=true] #btnCollapse .fa-angle-down {
+    display: none;
+ }
+
+
+ #CollapseBar[aria-expanded=false] #btnCollapse .fa-circle-minus {
+    display: none;
+ }
+ #CollapseBar[aria-expanded=false] #btnCollapse .fa-angle-up {
+    display: none;
+ }
+
+ /** REGULE FAQ **/ 
+ .w-30{
+    width: 10%;
+    height: 25px;
+     }
+.w-40{
+    width: 23%;
+}
+
+/*** SANIOS ACCEUIL ***/
+
+#banniere{
+    z-index: -1;
+    position: fixed;
+    top: 25%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    height: 35vw;
+}
+#blocg{
+    height: 36vw;
+	margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+	 display: block;
+}
+
+
+#blocd{
+    width: 60%;
+     color :#ffffff ; 
+    position: absolute;
+    height: 15vw;
+    right: 0;
+    padding-top: -1%;
+    border-bottom : 35vw solid var(--whiteBlue);
+    border-left : 15vw solid transparent;
+
+}
+
+.saniosTitle{
+    font-size: 15vw;
+    line-height: 25vw;
+    background-size: fill;
+    color: white;
+    font-variant: small-caps;
+    margin-left: -15vw;
+    margin-top: 20%;
+    font-family: 'Abril Fatface', cursive;
+    text-shadow: 5px 0px 8px rgba(29,23,74,0.36);
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+  
+label{
+    display: block;
+}
+
+/*mecanicien input text*/
+.textArea{
+    height: 150px;
+}
+
+/** MODALE ***/ 
+.delimiter{
+    position: relative;
+    width: 100%;
+	text-align: center;
+}
+.hidden{
+        display: none; /* Hidden by default */ 
+}
+
+.modal_Box {
+
+    position: absolute;
+    box-shadow: -2px 5px 250px 250px rgb(255 255 255 / 83%);
+    border: var(--lightBlue) 1px solid;
+    top: -10%;
+    z-index: 2;
+    text-align: center;
+    color: #56C842;
+    padding: 30% 5%;
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--clr-white);
+
+}
+
+.iconSucess{
+    font-size: 100px;
+    text-align: center;
+    color: #56C842;
+}
+
+/** EMPLOI BOXES GESTIONNAIRE */
+
+.boxEmploi{
+    font-size: 25px;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 0px;
+}
+
+
+#cadre{
+	
+border: 3px solid #0d6efd;
+}
+
+#bouton{
+	
+max-width: 350px;
+}
