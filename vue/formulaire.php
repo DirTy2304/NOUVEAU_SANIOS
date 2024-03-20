@@ -74,8 +74,8 @@ require('../vuemodel/formulaireVueModel.php');
                                 <select class="form-select" name="marque" id="">
                                     <option selected> <?= $currentVehicule['marque_nom'] ?></option>
                                     <?php foreach ($marques as $marque) : ?>
-                                        <option value="<?= var_dump($marque)['marque_nom']; ?>">
-                                            <?= var_dump($marque)['marque_nom']; ?>
+                                        <option value="<?= $marque['marque_nom']; ?>">
+                                            <?= $marque['marque_nom']; ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -97,9 +97,9 @@ require('../vuemodel/formulaireVueModel.php');
                                 <label for="type">Type du véhicule</label>
                                 <select class="form-select" name="type" id="">
                                     <option selected> <?= $currentVehicule['type_nom'] ?></option>
-                                    <?php foreach ($NomTypes as $type) : ?>
-                                        <option value="<?= $NomTypes['type_nom']; ?>">
-                                            <?= $NomTypes['type_nom']; ?>
+                                    <?php foreach ($types as $type) : ?>
+                                        <option value="<?= $type['type_nom']; ?>">
+                                            <?= $type['type_nom']; ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -124,7 +124,7 @@ require('../vuemodel/formulaireVueModel.php');
                                     <select class="form-select" name="inventairePosition" id="">
                                         <option selected> <?= $inventairePosition['societe_nom'] ?></option>
                                         <?php foreach ($societes as $societe) : ?>
-                                            <option value="<?= $societes['societe_nom']; ?>"><?= $societes['societe_nom']; ?></option>
+                                            <option value="<?= $societes['societe_nom']; ?>"><?= $societe['societe_nom']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
 
@@ -297,7 +297,7 @@ require('../vuemodel/formulaireVueModel.php');
                                         <div class="mt-4 ">
                                             <div class="form-group">
                                                 <!-- Date input -->
-                                                <label class="control-label" for="dateControleTechnique">Date de mise du controle technique </label>
+                                                <label class="control-label" for="dateControleTechnique">Date dernier controle technique </label>
                                                 <input class="form-control" id="date" name="dateControleTechnique" type="date" value="" />
                                             </div>
                                         </div>
