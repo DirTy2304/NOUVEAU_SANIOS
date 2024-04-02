@@ -1,2 +1,2 @@
 # NOUVEAU_SANIOS
-# Logiciel pour ambulancié, régulateur, mécanicien
+# Logiciel pour ambulancier, régulateur, mécanicien
