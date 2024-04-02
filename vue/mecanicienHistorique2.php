@@ -19,7 +19,7 @@ require __DIR__ . '/mecanicien.php';
 
 
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="historiqueTable">
         <thead>
             <tr>
                 <th scope="col">ALIAS</th>
@@ -39,8 +39,8 @@ require __DIR__ . '/mecanicien.php';
         </thead>
         <tbody>
             <tr>
-                <th scope="row"> <?= $currentalias ?></th>
-                <td> <?= $type ?> </td>
+                <th scope="row"> <?= $alias ?></th>
+                <td> types </td>
                 <td><?= $immatriculation ?></td>
                 <td><?= $modele ?> </td>
                 <td><?= $kilometreVehicules['kilometrage'] ?></td>
@@ -60,7 +60,61 @@ require __DIR__ . '/mecanicien.php';
             </tr>
         </tbody>
     </table>
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" id="ajouterLigne">Ajouter une ligne d'information</button>
+        <button class="btn btn-primary" type="button" id="ajouterLigne" onclick="sendDataToServerHistorique()">Enregistrer</button>
+    </div>
 
+    <script>
+        document.getElementById('ajouterLigne').addEventListener('click', function() {
+            var tableBody = document.querySelector('#historiqueTable tbody');
+            var newRow = document.createElement('tr');
+            var newIndex = tableBody.getElementsByTagName('tr').length + 1; // Calcul de l'index pour l'ID de la ligne
+
+            newRow.id = 'ligne' + newIndex;
+
+            newRow.innerHTML = `
+            <td contenteditable="true"></td>
+            <td contenteditable="true"><?= date('d M Y') ?></td>
+            <td contenteditable="true"><?= $immatriculation ?></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+        `;
+
+            tableBody.appendChild(newRow);
+        });
+
+        // Fonction pour envoyer les données au serveur via AJAX
+        function enregistrerLigne(id) {
+            var ligne = document.getElementById(id);
+            var cells = ligne.getElementsByTagName('td');
+            var data = {};
+
+            for (var i = 0; i < cells.length; i++) {
+                data['colonne' + i] = cells[i].innerText;
+            }
+
+            // Envoi des données au serveur via AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'enregistrer.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Réponse du serveur
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        }
+    </script>
 </body>
 
 </html>

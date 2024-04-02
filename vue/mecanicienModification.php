@@ -91,8 +91,8 @@ require __DIR__ . '/mecanicien.php';
                                 <div class="row ">
 
                                     <div class="col-12">
-                                        <label for="PneuxAvant" class="text-primary"> Pneux Avant </label>
-                                        <input type="text" class="form-control" name="PneuxAvant" class="form-control" id="PneuxAvant" required>
+                                        <label for="PneuxAvant" class="text-primary"> PneusAvant Avant </label>
+                                        <input type="text" class="form-control" name="PneusAvant" class="form-control" id="PneusAvant" required>
                                     </div>
 
                                 </div>
@@ -102,8 +102,8 @@ require __DIR__ . '/mecanicien.php';
                                 <div class="row ">
 
                                     <div class="col-12">
-                                        <label for="PneuxArière" class="text-primary"> Pneux Arière </label>
-                                        <input type="text" class="form-control" name="PneuxArière" class="form-control" id="PneuxArière" required>
+                                        <label for="PneusArière" class="text-primary"> Pneus Arière </label>
+                                        <input type="text" class="form-control" name="PneusArière" class="form-control" id="PneusArière" required>
                                     </div>
 
                                 </div>
@@ -124,7 +124,7 @@ require __DIR__ . '/mecanicien.php';
                                 <div class="row ">
 
                                     <div class="col-12">
-                                        <input type="submit" class="btn btn-primary w-100" name="PneuxValidate" value="Je valide ">
+                                        <input type="submit" class="btn btn-secondary w-100" name="PneusValidate" value="Je valide ">
                                     </div>
                                 </div>
                             </div>

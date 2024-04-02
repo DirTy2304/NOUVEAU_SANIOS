@@ -122,7 +122,7 @@ require __DIR__ . '/mecanicien.php';
                                 <div class="row ">
 
                                     <div class="col-12">
-                                        <input type="submit" class="btn btn-primary w-100" name="entretienValidate" value="Je valide ">
+                                        <input type="submit" class="btn btn-warning w-100" name="entretienValidate" value="Je valide ">
                                     </div>
                                 </div>
                             </div>
