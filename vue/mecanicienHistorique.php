@@ -27,6 +27,7 @@ require __DIR__ . '/mecanicien.php';
                 <th scope="col">PNEUS AVANT</th>
                 <th scope="col">PNEUS ARRIERE</th>
                 <th scope="col">COMMENTAIRE</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,11 @@ require __DIR__ . '/mecanicien.php';
                 <td>Exemple</td>
                 <td>Exemple</td>
                 <td>Exemple</td>
+                <td>
+                    <button onclick="supprimerLigne(this)">
+                        <i class="fa-solid fa-trash"></i> <!-- Icône de la corbeille -->
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -50,71 +56,37 @@ require __DIR__ . '/mecanicien.php';
     </div>
 
     <script>
-    document.getElementById('ajouterLigne').addEventListener('click', function() {
-        var tableBody = document.querySelector('#historiqueTable tbody');
-        var newRow = document.createElement('tr');
-        var newIndex = tableBody.getElementsByTagName('tr').length + 1; // Calcul de l'index pour l'ID de la ligne
+        document.getElementById('ajouterLigne').addEventListener('click', function() {
+            var tableBody = document.querySelector('#historiqueTable tbody');
+            var newRow = document.createElement('tr');
+            var newIndex = tableBody.getElementsByTagName('tr').length + 1; // Calcul de l'index pour l'ID de la ligne
 
-        newRow.id = 'ligne' + newIndex;
+            newRow.id = 'ligne' + newIndex;
 
-        newRow.innerHTML = `
-            <td contenteditable="true"></td>
-            <td contenteditable="true"><?= date('d M Y') ?></td>
-            <td contenteditable="true"><?= $immatriculation ?></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-        `;
+            newRow.innerHTML = `
+                <td contenteditable="true"></td>
+                <td contenteditable="true"><?= date('d M Y') ?></td>
+                <td contenteditable="true"><?= $immatriculation ?></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td>
+                    <button onclick="supprimerLigne(this)">Supprimer</button> <!-- Bouton de suppression -->
+                </td>
+            `;
 
-        tableBody.appendChild(newRow);
-    });
+            tableBody.appendChild(newRow);
+        });
 
-    // Fonction pour envoyer les données au serveur via AJAX
-    function enregistrerLigne(id) {
-        var ligne = document.getElementById(id);
-        var cells = ligne.getElementsByTagName('td');
-        var data = {};
-
-        for (var i = 0; i < cells.length; i++) {
-            data['colonne' + i] = cells[i].innerText;
+        // Fonction pour supprimer une ligne
+        function supprimerLigne(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
         }
-
-        // Envoi des données au serveur via AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'enregistrer.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Réponse du serveur
-                console.log(xhr.responseText);
-            }
-        };
-        xhr.send(JSON.stringify(data));
-    }
-
-        function sendDataToServerHistorique(alias, date) {
-
-            var alias = document.getElementById("alias").value;
-            var Date = document.getElementById("Date").value;
-            var Immatriculation = document.getElementById("Immatriculation").value;
-            var KM_Compteur = document.getElementById("KM_Compteur").value;
-            var KM_Etiquette = document.getElementById("KM_Etiquette").value;
-            var Pneus_Avant = document.getElementById("Pneus_Avant").value;
-            var Pneus_Arriere = document.getElementById("Pneus_Arriere").value;
-            var Commentaire = document.getElementById("Commentaire").value;
-            var Modele = document.getElementById("Modele").value;
-
-
-            $.ajax({
-                url: "enregistrer.php", // Le nom du script PHP qui insérera les données
-                type: "POST",
-                data: 'alias=' + alias + '&Date=' + Date + '&Immaticulation=' + Immatriculation + '&KM_Compteur=' + KM_Compteur + '&KM_Etiquette=' + KM_Etiquette + '&Pneus_Avant=' + Pneus_Avant + '&Pneus_Arriere=' + Pneus_Arriere + '&Commentaire=' + Commentaire + '&Modele=' + Modele,
-            });
-        }
-</script>
+    </script>
 </body>
 
 </html>
