@@ -84,10 +84,10 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
                     echo "<td contenteditable='true'>" . $row['km_compteur'] . "</td>";
                     echo "<td contenteditable='true'>" . $row['commentaire'] . "</td>";
                     echo "<td>
-                            <button onclick='supprimerLigne(this)'>
-                                <i class='fa-solid fa-trash'></i> <!-- Icône de la corbeille -->
-                            </button>
-                          </td>";
+                    <button onclick='supprimerLigne(" . $row['id'] . ")'>
+                        <i class='fa-solid fa-trash'></i> <!-- Icône de la corbeille -->
+                    </button>
+                </td>";
                     echo "</tr>";
                 }
                 ?>
@@ -124,25 +124,24 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
             tableBody.appendChild(newRow);
         });
 
-        // Fonction pour supprimer une ligne
-        function supprimerLigne(button) {
-            var row = button.parentNode.parentNode;
-            var id = row.getAttribute('data-id'); // Récupérez l'identifiant unique de la ligne
-            // Requête AJAX pour supprimer la ligne de la base de données
+        function supprimerLigne(id) {
+            // Envoyer une requête AJAX pour supprimer la ligne correspondante dans la base de données
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "supprimer_ligne.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Si la suppression est réussie, supprimez la ligne du tableau
-                    if (xhr.responseText.trim() === 'success') {
+                    // Supprimer la ligne du tableau HTML si la suppression dans la base de données a réussi
+                    if (xhr.responseText.trim() === "success") {
+                        var row = document.getElementById("ligne" + id);
                         row.parentNode.removeChild(row);
+                        alert("Ligne supprimée avec succès !");
                     } else {
-                        alert('Erreur lors de la suppression de la ligne.');
+                        alert("Erreur lors de la suppression de la ligne !");
                     }
                 }
             };
-            xhr.send("id=" + id); // Envoyez l'identifiant unique à supprimer_ligne.php
+            xhr.send("id=" + id);
         }
     </script>
 </body>

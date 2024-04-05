@@ -66,6 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th scope="col">VIDANGE</th>
                     <th scope="col">DISTRIBUTION</th>
                     <th scope="col">PARE BRISE</th>
+                    <th scope="col">PLAQUETTE FREIN</th>
+                    <th scope="col">DISQUE FREIN</th>
+                    <th scope="col">COMMENTAIRE</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,6 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td contenteditable="true"></td>
                 <td contenteditable="true"><?= date('d M Y') ?></td>
                 <td contenteditable="true"><?= $immatriculation ?></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
                 <td contenteditable="true"></td>
                 <td contenteditable="true"></td>
                 <td contenteditable="true"></td>
