@@ -5,7 +5,7 @@ if (isset($_POST['id'])) {
     $id = $_POST['id'];
 
     // Requête pour supprimer la ligne dans la base de données
-    $sql = "DELETE FROM sanios_historique_vehicule WHERE id = $id";
+    $sql = "DELETE FROM sanios_vehicule_pneus WHERE id = $id";
     if (mysqli_query($conn, $sql)) {
         echo "success"; // Envoyer une réponse réussie
     } else {

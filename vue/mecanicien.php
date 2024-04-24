@@ -16,6 +16,8 @@ require __DIR__ . '/../vuemodel/mecanicienVueModel.php';
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet" href="media/css/asset.css">
+
+  
 </head>
 
 <body>
@@ -60,23 +62,20 @@ require __DIR__ . '/../vuemodel/mecanicienVueModel.php';
       <div class="row justify-content-center">
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <label> Renseigner un entretien <label>
               <a href="mecanicienEntretien.php" class="btn btn-warning w-100 btn-lg btn-block"> ENTRETIEN </a>
-        </div>
+        </div> 
 
       </div>
 
       <div class="row justify-content-center mt-5">
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <label> Suivis pneumatique <label>
+        <!--<div class="d-grid gap-2 col-6 mx-auto">
               <a href="mecanicienModification.php" class="btn btn-secondary w-100 btn-lg btn-block"> PNEUS </a>
         </div>
-        <div class="row justify-contentcenter mt-5">
+        <div class="row justify-contentcenter mt-5">-->
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <label>Historique pneumatique <label>
-                <a href="mecanicienHistorique.php" class="btn btn-info w-100 btn-lg btn-block"> HISTORIQUE PNEUMATIQUE </a>
+                <a href="mecanicienHistorique.php" class="btn btn-primary w-100 btn-lg btn-block">PNEUMATIQUE </a>
           </div>
         </div>
       </div>
@@ -85,7 +84,6 @@ require __DIR__ . '/../vuemodel/mecanicienVueModel.php';
         <div class="row justify-content-center">
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <label> Historique entretien <label>
                 <a href="mecanicienHistorique2.php" class="btn btn-info w-100 btn-lg btn-block"> HISTORIQUE ENTRETIEN </a>
           </div>
 

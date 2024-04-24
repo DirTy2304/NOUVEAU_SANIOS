@@ -23,11 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $immatriculation = $_POST['immatriculation'];
         $modele = $_POST['modele'];
         $km_compteur = $_POST['km_compteur'];
+        $pneus_avant = $_POST['pneus_avant'];
+        $pneus_arriere = $_POST['pneus_arriere'];
         $commentaire = $_POST['commentaire'];
         // Vous pouvez récupérer d'autres données de la même manière
 
         // Insérer les données dans la base de données
-        $sql = "INSERT INTO sanios_historique_vehicule (alias, date, immatriculation, modele, km_compteur, commentaire) VALUES ('$alias', '$date', '$immatriculation', '$modele', '$km_compteur','$commentaire')";
+        $sql = "INSERT INTO sanios_vehicule_pneus (alias, date, immatriculation, modele, km_compteur, pneus_avant, pneus_arriere, commentaire) VALUES ('$alias', '$date', '$immatriculation', '$modele', '$km_compteur','$pneus_avant','$pneus_arriere','$commentaire')";
         // Exécutez la requête
         if (mysqli_query($conn, $sql)) {
             echo "Données insérées avec succès.";
@@ -43,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Récupérer les données depuis la base de données
-$result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
+$result = mysqli_query($conn, "SELECT * FROM sanios_vehicule_pneus");
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +55,7 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historique Véhicule</title>
+    <title>Pneumatique</title>
 </head>
 
 <body>
@@ -68,7 +70,8 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
                     <th scope="col">IMMATRICULATION</th>
                     <th scope="col">MODELE</th>
                     <th scope="col">KM COMPTEUR</th>
-                    <!--<th scope="col">KM ETIQUETTE</th>-->
+                    <th scope="col">PNEUS AVANT</th>
+                    <th scope="col">PNEUS ARRIERE</th>
                     <th scope="col">COMMENTAIRE</th>
                 </tr>
             </thead>
@@ -82,6 +85,8 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
                     echo "<td contenteditable='true'>" . $row['immatriculation'] . "</td>";
                     echo "<td contenteditable='true'>" . $row['modele'] . "</td>";
                     echo "<td contenteditable='true'>" . $row['km_compteur'] . "</td>";
+                    echo "<td contenteditable='true'>" . $row['pneus_avant'] . "</td>";
+                    echo "<td contenteditable='true'>" . $row['pneus_arriere'] . "</td>";
                     echo "<td contenteditable='true'>" . $row['commentaire'] . "</td>";
                     echo "<td>
                     <button onclick='supprimerLigne(" . $row['id'] . ")'>
@@ -113,6 +118,8 @@ $result = mysqli_query($conn, "SELECT * FROM sanios_historique_vehicule");
             <td contenteditable="true"><input type="text" name="immatriculation"></td>
             <td contenteditable="true"><input type="text" name="modele"></td>
             <td contenteditable="true"><input type="number" name="km_compteur"></td>
+            <td contenteditable="true"><input type="text" name="pneus_avant"></td>
+            <td contenteditable="true"><input type="text" name="pneus_arriere"></td>
             <td contenteditable="true"><input type="text" name="commentaire"></td>
             <td>
                         <button onclick="supprimerLigne(this)">
