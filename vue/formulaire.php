@@ -21,6 +21,25 @@ if ($_SESSION['fk_emploi'] == 3) {
     require __DIR__ . '/regule.php';
 }
 require('../vuemodel/formulaireVueModel.php');
+
+
+
+// Assurez-vous d'avoir une connexion à la base de données valide ici
+$connection = mysqli_connect("localhost", "root", "", "dbs6406676");
+
+if (!$connection) {
+    die("Erreur de connexion à la base de données: " . mysqli_connect_error());
+}
+
+// Vos requêtes SQL pour récupérer les marques et les modèles
+$queryMarques = "SELECT * FROM sanios_marque";
+$resultMarques = mysqli_query($connection, $queryMarques);
+
+$queryModeles = "SELECT * FROM sanios_modele";
+$resultModeles = mysqli_query($connection, $queryModeles);
+
+$queryTypes = "SELECT * FROM sanios_type";
+$resultTypes = mysqli_query($connection, $queryTypes);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,36 +91,30 @@ require('../vuemodel/formulaireVueModel.php');
                             <div class="col-lg-3 col-md-6">
                                 <label for="marque">Marque du véhicule</label>
                                 <select class="form-select" name="marque" id="">
-                                    <option selected> <?= $currentVehicule['marque_nom'] ?></option>
-                                    <?php foreach ($marques as $marque) : ?>
-                                        <option value="<?= $marque['marque_nom']; ?>">
-                                            <?= $marque['marque_nom']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                    <option selected disabled><?= $currentVehicule['marque_nom'] ?></option>
+                                    <?php while ($marque = mysqli_fetch_assoc($resultMarques)) : ?>
+                                        <option value="<?= $marque['marque_nom']; ?>"><?= $marque['marque_nom']; ?></option>
+                                    <?php endwhile; ?>
                                 </select>
                             </div>
 
                             <div class="col-lg-3 col-md-6">
-                                <label for="modele">Modele du véhicule</label>
+                                <label for="modele">Modèle du véhicule</label>
                                 <select class="form-select" name="modele" id="">
-                                    <option selected> <?= $currentVehicule['modele_nom'] ?></option>
-                                    <?php foreach ($modeles as $modele) : ?>
-                                        <option value="<?= $modeles['modele_nom']; ?>">
-                                            <?= $modeles['modele_nom']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                    <option selected disabled> <?= $currentVehicule['modele_nom'] ?></option>
+                                    <?php while ($modele = mysqli_fetch_assoc($resultModeles)) : ?>
+                                        <option value="<?= $modele['modele_nom']; ?>"><?= $modele['modele_nom']; ?></option>
+                                    <?php endwhile; ?>
                                 </select>
                             </div>
 
                             <div class="col-lg-3 col-md-6">
                                 <label for="type">Type du véhicule</label>
                                 <select class="form-select" name="type" id="">
-                                    <option selected> <?= $currentVehicule['type_nom'] ?></option>
-                                    <?php foreach ($types as $type) : ?>
-                                        <option value="<?= $type['type_nom']; ?>">
-                                            <?= $type['type_nom']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
+                                    <option selected disabled><?= $currentVehicule['type_nom'] ?></option>
+                                    <?php while ($type = mysqli_fetch_assoc($resultTypes)) : ?>
+                                        <option value="<?= $type['type_nom']; ?>"><?= $type['type_nom']; ?></option>
+                                    <?php endwhile; ?>
                                 </select>
                             </div>
                         </div>
@@ -110,12 +123,10 @@ require('../vuemodel/formulaireVueModel.php');
                         <div class="row pt-4 pb-3">
 
                             <div class="col-lg-3 col-md-6">
-
                                 <div class="form-group <?= $immatriculationFalse ?>">
                                     <label for="plaqueImmatriculation">Plaque d'Immatriculation</label>
                                     <input type="text" name="plaqueImmatriculation" pattern="^[A-Z]{2}+[0-9]{3}+[A-Z]{2}+$" class="form-control" placeholder="" value="<?= $currentVehicule['plaque']; ?>">
                                 </div>
-
                             </div>
                             <?php if ($_SESSION['fk_emploi'] == 4) : ?>
                                 <div class="col-lg-3 col-md-6">
@@ -132,9 +143,7 @@ require('../vuemodel/formulaireVueModel.php');
                             <?php endif; ?>
                             <div class="col-lg-3 col-md-6">
                                 <div class="form-group">
-                                    <!-- Date input -->
-                                    <label class="control-label" for="datemisecirculation">Date de mise en circulation
-                                    </label>
+                                    <label class="control-label" for="datemisecirculation">Date de mise en circulation</label>
                                     <input class="form-control" id="date" name="datemisecirculation" type="date" value="<?= $currentVehicule['date_mise_circulation']; ?>" />
                                 </div>
                             </div>

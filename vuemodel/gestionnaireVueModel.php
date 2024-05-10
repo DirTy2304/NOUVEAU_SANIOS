@@ -75,10 +75,10 @@ function getVehicules($idSociete){
     $location = searchLocation($idVehicule);
 
   
-    foreach ($location as $locateDate) {
-      array_push($dates, $locateDate['EHeure']);
-      array_push($dates, $locateDate['HHeure']);
-    }
+    //foreach ($location as $locateDate) {
+     // array_push($dates, $locateDate['EHeure']);
+     //array_push($dates, $locateDate['HHeure']);
+    //}
 
      if(count($dates)>1){
       $lastEntry = findClosestDate($dates);

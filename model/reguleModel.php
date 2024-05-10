@@ -45,7 +45,6 @@ function getVehiculesFetch(){
 function searchLocation($idVehicule){
   $bd = connectBd();
   $sql = $bd->prepare("SELECT se.heure as EHeure ,
-   sh.heure as HHeure,
     se.fk_user_societe as EUserSoc,
      se.fk_user_societe as HUserSoc,
       sv.fk_societe FROM sanios_entretien as se

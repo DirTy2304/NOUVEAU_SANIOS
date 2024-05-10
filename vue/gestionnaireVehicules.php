@@ -206,7 +206,7 @@ if (file_exists('media/qrCode/QrcodeIdRoulant'.$vehicule['plaque'].'.png')) {
                                     </div>
 
                                     <div class="col-lg-4 col-md-6">
-                                        <?php echo ($desinfectionApprofondie) ? $desinfectionApprofondie['heure'] : "N/A"; ?>
+                                        <?php //echo ($desinfectionApprofondie) ? $desinfectionApprofondie['heure'] : "N/A"; ?>
                                     </div>
                                 </div>
 
@@ -221,7 +221,7 @@ if (file_exists('media/qrCode/QrcodeIdRoulant'.$vehicule['plaque'].'.png')) {
                                     </div>
 
                                     <div class="col-lg-4 col-md-6">
-                                        <?php echo ($desinfectionCourante) ? $desinfectionCourante['heure'] : "N/A"; ?>
+                                        <?php //echo ($desinfectionCourante) ? $desinfectionCourante['heure'] : "N/A"; ?>
                                     </div>
                                 </div>
 
@@ -235,7 +235,7 @@ if (file_exists('media/qrCode/QrcodeIdRoulant'.$vehicule['plaque'].'.png')) {
                                     </div>
 
                                     <div class="col-lg-4 col-md-6">
-                                        <?php echo ($nettoyageExterieur) ? $nettoyageExterieur['heure'] : "N/A"; ?>
+                                        <?php //echo ($nettoyageExterieur) ? $nettoyageExterieur['heure'] : "N/A"; ?>
                                     </div>
                                 </div>
                                 <div class="row gx-1 mt-1 mb-1 w-100">
@@ -248,7 +248,7 @@ if (file_exists('media/qrCode/QrcodeIdRoulant'.$vehicule['plaque'].'.png')) {
                                     </div>
 
                                     <div class="col-lg-4 col-md-6">
-                                        <?php echo ($nettoyageInterieur) ? $nettoyageInterieur['heure'] : "N/A"; ?>
+                                        <?php //echo ($nettoyageInterieur) ? $nettoyageInterieur['heure'] : "N/A"; ?>
                                     </div>
                                 </div>
 
