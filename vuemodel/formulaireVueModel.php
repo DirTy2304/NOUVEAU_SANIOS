@@ -57,7 +57,7 @@ function cleanStringForm($str){
 if (isset($_POST['modifyGestionnaire'])) {
 
 
-$plaqueImmatriculation = trim($_POST['plaqueImmatriculation']);
+$plaqueImmatriculation = $_POST['plaqueImmatriculation'];
 
    if (cleanStringForm($plaqueImmatriculation) == false){
     $immatriculationFalse = " bg-danger ";
@@ -68,15 +68,15 @@ $alias = $_SESSION['alias'];
     if ($_SESSION['fk_emploi'] == 3){
         $societe =$_SESSION['fk_societe'];
     } else { 
-        $societeStr =trim( $_POST['societe']);
+        $societeStr = $_POST['societe'];
         $societe = (getSocieteByName($societeStr));
     }
 
-$marqueStr = trim($_POST['marque']);
+$marqueStr = $_POST['marque'];
 $marque = getMarqueByName($marqueStr);
-$modeleStr = trim($_POST['modele']);
+$modeleStr = $_POST['modele'];
 $modele = getModeleByName($modeleStr);
-$typeStr = trim($_POST['type']);
+$typeStr = $_POST['type'];
 $type = getTypeByName($typeStr);
 
     if ($_SESSION['fk_emploi'] == 3){
@@ -94,9 +94,9 @@ $cessionStr = $_POST['cession'];
      $Emploi = $_SESSION['fk_emploi'],
      $alias, 
  ($_SESSION['fk_emploi'] == 3) ? $societe : $societe['id_societe'], 
-    $marque['id_marque'], 
-    $modele['id_modele'], 
-    $type['id_type'], 
+    $marque, 
+    $modele, 
+    $type, 
     $plaqueImmatriculation, 
     ($_SESSION['fk_emploi'] == 3) ? $inventairePosition['fk_inventaire_position'] : $inventairePosition['id_societe'], 
     $datemisecirculation, 
