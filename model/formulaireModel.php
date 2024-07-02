@@ -163,7 +163,7 @@ function getAliasDoublon($alias)
  * @param [int] $modele
  * @param [int] $type
  * @param [string] $plaqueImmatriculation
- * @param [string] $inventairePosition
+ * @param [string] $inventairePositiona
  * @param [string] $datemisecirculation
  * @param [bool] $cession
  * @return header

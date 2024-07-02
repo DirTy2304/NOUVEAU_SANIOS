@@ -30,82 +30,79 @@ function cleanStringForm($str){
 /*********************************************************************************************/
 /*********************************************************************************************/
 
- if (isset($_POST['modify'])) {
-     if($_POST['alias']!='Selectionner votre véhicule'){
-    $currentAlias =  $_POST['alias'];
-
-    $currentVehicule = getVehiculeData($currentAlias);
-    $marques = nameFetch('marque');
-    $modeles = nameFetch('modele');
-    $societes = nameFetch('societe');
-    $types = nameFetch('type');
-    $_SESSION['alias'] = $currentVehicule['ancien_id'];
-    //$inventairePosition = getSocieteById($currentVehicule['fk_inventaire_position']);
-    
-    
-    $immatriculationFalse = "";
-    
-    }else{
-
-    ($_SESSION['fk_emploi'] == 3) ? header('location:reguleForm.php') : header('location:gestionnaireForm.php');
-   
+if (isset($_POST['modify'])) {
+    if ($_POST['alias'] != 'Selectionner votre véhicule') {
+        $currentAlias = $_POST['alias'];
+        $currentVehicule = getVehiculeData($currentAlias);
+        $marques = nameFetch('marque');
+        $modeles = nameFetch('modele');
+        $societes = nameFetch('societe');
+        $types = nameFetch('type');
+        $_SESSION['alias'] = $currentVehicule['ancien_id'];
+        $_SESSION['currentVehicule'] = $currentVehicule; // Stocker les données actuelles du véhicule dans la session
+        $immatriculationFalse = "";
+    } else {
+        ($_SESSION['fk_emploi'] == 3) ? header('location:reguleForm.php') : header('location:gestionnaireForm.php');
+    }
 }
- }
-
-
 
 if (isset($_POST['modifyGestionnaire'])) {
-
-
-$plaqueImmatriculation = $_POST['plaqueImmatriculation'];
-
-   if (cleanStringForm($plaqueImmatriculation) == false){
-    $immatriculationFalse = " bg-danger ";
-    }else{ 
-
-$immatriculationFalse = "";
-$alias = $_SESSION['alias'];
-    if ($_SESSION['fk_emploi'] == 3){
-        $societe =$_SESSION['fk_societe'];
-    } else { 
-        $societeStr = $_POST['societe'];
-        $societe = (getSocieteByName($societeStr));
+    if (!isset($_SESSION['currentVehicule'])) {
+        die("Les données du véhicule ne sont pas disponibles.");
     }
 
-$marqueStr = $_POST['marque'];
-$marque = getMarqueByName($marqueStr);
-$modeleStr = $_POST['modele'];
-$modele = getModeleByName($modeleStr);
-$typeStr = $_POST['type'];
-$type = getTypeByName($typeStr);
+    $currentVehicule = $_SESSION['currentVehicule'];
+    $alias = $_SESSION['alias'];
+    
+    // Utiliser les valeurs existantes si le champ est vide
+    $plaqueImmatriculation = !empty($_POST['plaqueImmatriculation']) ? $_POST['plaqueImmatriculation'] : $currentVehicule['plaque'];
+    $datemisecirculation = !empty($_POST['datemisecirculation']) ? $_POST['datemisecirculation'] : $currentVehicule['date_mise_circulation'];
+    $cessionStr = isset($_POST['cession']) ? $_POST['cession'] : ($currentVehicule['cession'] == 0 ? "En activité" : "A céder");
+    $cession = ($cessionStr == "En activité") ? 0 : 1;
 
-    //if ($_SESSION['fk_emploi'] == 3){
-    //    $inventairePosition = getInventairePosition($alias);
-   // }else{ 
-    //    $inventairePositionStr = trim($_POST['inventairePosition']);
-    //    $inventairePosition = getSocieteByName($inventairePositionStr);
-   // }
+    // Récupérer la société
+    if ($_SESSION['fk_emploi'] == 3) {
+        $societe = $_SESSION['fk_societe'];
+    } else {
+        $societeStr = !empty($_POST['societe']) ? $_POST['societe'] : $currentVehicule['societe_nom'];
+        $societe = getSocieteByName($societeStr);
+    }
 
-$datemisecirculation = $_POST['datemisecirculation'];
-$cessionStr = $_POST['cession'];
-($cessionStr == "En activité") ? $cession = 0 : $cession = 1 ;
+    // Récupérer la marque
+    $marqueStr = !empty($_POST['marque']) ? $_POST['marque'] : $currentVehicule['marque_nom'];
+    $marque = getMarqueByName($marqueStr);
 
- updateVehicule(
-     $Emploi = $_SESSION['fk_emploi'],
-     $alias, 
- ($_SESSION['fk_emploi'] == 3) ? $societe : $societe['id_societe'], 
-    $marque, 
-    $modele, 
-    $type, 
-    $plaqueImmatriculation, 
-    //($_SESSION['fk_emploi'] == 3) ? $inventairePosition['fk_inventaire_position'] : $inventairePosition['id_societe'], 
-    $datemisecirculation, 
-    $cession
-);
+    // Récupérer le modèle
+    $modeleStr = !empty($_POST['modele']) ? $_POST['modele'] : $currentVehicule['modele_nom'];
+    $modele = getModeleByName($modeleStr);
+    if (!$modele) {
+        die("Modèle invalide ou inexistant");
+    }
 
+    // Récupérer le type
+    $typeStr = !empty($_POST['type']) ? $_POST['type'] : $currentVehicule['type_nom'];
+    $type = getTypeByName($typeStr);
+    if (!$type) {
+        die("Type invalide ou inexistant");
+    }
+
+    try {
+        updateVehicule(
+            $Emploi = $_SESSION['fk_emploi'],
+            $alias,
+            $_SESSION['fk_emploi'] == 3 ? $societe : $societe['id_societe'],
+            $marque,
+            $modele,
+            $type,
+            $plaqueImmatriculation,
+            $datemisecirculation,
+            $cession
+        );
+        unset($_SESSION['currentVehicule']); // Supprimer les données du véhicule après la mise à jour
+    } catch (PDOException $e) {
+        die("Erreur lors de la mise à jour : " . $e->getMessage());
+    }
 }
-}
-
 
 /*********************************************************************************************/
 /*********************************************************************************************/

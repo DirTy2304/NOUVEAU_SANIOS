@@ -59,8 +59,8 @@ $resultTypes = mysqli_query($connection, $queryTypes);
     <div class="card m-4">
 
         <?php if (isset($_POST['modify'])) :
-
-            $currentAlias =  $_POST['alias']; ?>
+            $currentAlias = $_POST['alias'];
+            $currentVehicule = $_SESSION['currentVehicule']; ?>
 
             <div class="card-header pt-4 text-<?= $colorBtn ?>">
                 <h1> MODIFIER LE VEHICULE - <?= $currentAlias ?> </h1>
@@ -119,7 +119,6 @@ $resultTypes = mysqli_query($connection, $queryTypes);
                             </div>
                         </div>
 
-
                         <div class="row pt-4 pb-3">
 
                             <div class="col-lg-3 col-md-6">
@@ -145,48 +144,25 @@ $resultTypes = mysqli_query($connection, $queryTypes);
                                         <option value="A céder">A céder </option>
                                     </select>
 
-
-
-
                                 </div>
 
                             <?php endif; ?>
-                            <!--<label for="InventairePosition">Inventaire Position</label>
-                                    <select class="form-select" name="inventairePosition" id=""> 
-                                        <option selected> // $inventairePosition['societe_nom'] ?></option>
-                                        <//?php foreach ($societes as $societe) : ?>
-                                            <option value="<//?= $societes['societe_nom']; ?>"><//?= $societe['societe_nom']; ?></option>
-                                        <//?php endforeach; ?>
-                                    </select>-->
 
                         </div>
 
-
-
                         <footer class="footer container pb-4 text-end mt-4">
-
                             <div class="row ">
-
                                 <div class="col-md-12 mt-4">
                                     <div class="form-group ">
-
-                                        <button class="btn btn-<?= $colorBtn ?> " name="modifyGestionnaire" type="submit">Je valide mes modifications </button>
+                                        <button class="btn btn-<?= $colorBtn ?> " name="modifyGestionnaire" type="submit">Je valide mes modifications</button>
                                     </div>
                                 </div>
-
-
                             </div>
-
-
+                        </footer>
+                    </form>
                 </div>
-
-
-                </footer>
-
-
-                </form>
-            </div>
         <?php endif; ?>
+    </div>
 
 
 
