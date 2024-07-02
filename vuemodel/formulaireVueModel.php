@@ -40,7 +40,7 @@ function cleanStringForm($str){
     $societes = nameFetch('societe');
     $types = nameFetch('type');
     $_SESSION['alias'] = $currentVehicule['ancien_id'];
-    $inventairePosition = getSocieteById($currentVehicule['fk_inventaire_position']);
+    //$inventairePosition = getSocieteById($currentVehicule['fk_inventaire_position']);
     
     
     $immatriculationFalse = "";
@@ -79,12 +79,12 @@ $modele = getModeleByName($modeleStr);
 $typeStr = $_POST['type'];
 $type = getTypeByName($typeStr);
 
-    if ($_SESSION['fk_emploi'] == 3){
-        $inventairePosition = getInventairePosition($alias);
-    }else{ 
-        $inventairePositionStr = trim($_POST['inventairePosition']);
-        $inventairePosition = getSocieteByName($inventairePositionStr);
-    }
+    //if ($_SESSION['fk_emploi'] == 3){
+    //    $inventairePosition = getInventairePosition($alias);
+   // }else{ 
+    //    $inventairePositionStr = trim($_POST['inventairePosition']);
+    //    $inventairePosition = getSocieteByName($inventairePositionStr);
+   // }
 
 $datemisecirculation = $_POST['datemisecirculation'];
 $cessionStr = $_POST['cession'];
@@ -98,7 +98,7 @@ $cessionStr = $_POST['cession'];
     $modele, 
     $type, 
     $plaqueImmatriculation, 
-    ($_SESSION['fk_emploi'] == 3) ? $inventairePosition['fk_inventaire_position'] : $inventairePosition['id_societe'], 
+    //($_SESSION['fk_emploi'] == 3) ? $inventairePosition['fk_inventaire_position'] : $inventairePosition['id_societe'], 
     $datemisecirculation, 
     $cession
 );

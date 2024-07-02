@@ -129,17 +129,6 @@ $resultTypes = mysqli_query($connection, $queryTypes);
                                 </div>
                             </div>
                             <?php if ($_SESSION['fk_emploi'] == 4) : ?>
-                                <div class="col-lg-3 col-md-6">
-
-                                    <label for="InventairePosition">Inventaire Position</label>
-                                    <select class="form-select" name="inventairePosition" id="">
-                                        <option selected> <?= $inventairePosition['societe_nom'] ?></option>
-                                        <?php foreach ($societes as $societe) : ?>
-                                            <option value="<?= $societes['societe_nom']; ?>"><?= $societe['societe_nom']; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-
-                                </div>
                             <?php endif; ?>
                             <div class="col-lg-3 col-md-6">
                                 <div class="form-group">
@@ -162,180 +151,190 @@ $resultTypes = mysqli_query($connection, $queryTypes);
                                 </div>
 
                             <?php endif; ?>
-
-
-                            <footer class="footer container pb-4 text-end mt-4">
-
-                                <div class="row ">
-
-                                    <div class="col-md-12 mt-4">
-                                        <div class="form-group ">
-                                            <!-- Submit button -->
-                                            <button class="btn btn-<?= $colorBtn ?> " name="modifyGestionnaire" type="submit">Je valide mes modifications </button>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
+                            <!--<label for="InventairePosition">Inventaire Position</label>
+                                    <select class="form-select" name="inventairePosition" id=""> 
+                                        <option selected> // $inventairePosition['societe_nom'] ?></option>
+                                        <//?php foreach ($societes as $societe) : ?>
+                                            <option value="<//?= $societes['societe_nom']; ?>"><//?= $societe['societe_nom']; ?></option>
+                                        <//?php endforeach; ?>
+                                    </select>-->
 
                         </div>
 
 
-                        </footer>
+
+                        <footer class="footer container pb-4 text-end mt-4">
+
+                            <div class="row ">
+
+                                <div class="col-md-12 mt-4">
+                                    <div class="form-group ">
+
+                                        <button class="btn btn-<?= $colorBtn ?> " name="modifyGestionnaire" type="submit">Je valide mes modifications </button>
+                                    </div>
+                                </div>
 
 
-                    </form>
+                            </div>
+
+
                 </div>
-            <?php endif; ?>
+
+
+                </footer>
+
+
+                </form>
+            </div>
+        <?php endif; ?>
 
 
 
-            <!-- CREATION VEHICULE -->
+        <!-- CREATION VEHICULE -->
 
-            <?php if (isset($_POST['create'])) : ?>
-
-                <!-- REMAQUE FORMULAIRE -->
+        <?php if (isset($_POST['create'])) : ?>
 
 
-                <div class="card">
-                    <div class="card-header">
-                        <h1 class="  text-<?= $colorBtn ?>">Créer un Véhicule</h1>
-                    </div>
-                    <div class="card-body">
-
-                        <form method="POST" class="was-validated" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 
-                            <div class="container ">
-                                <div class="row justify-content-between">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="  text-<?= $colorBtn ?>">Créer un Véhicule</h1>
+                </div>
+                <div class="card-body">
 
-                                    <div class="border bg-whiteBlue p-3 col-md-5">
-                                        <!-- FIRST CARD -->
-                                        <h2 class="display-3">
-                                            <?php $userSoc =  getSocieteById($_SESSION['fk_societe']) ?>
-                                            <?= ($_SESSION['fk_emploi'] == 4) ?  $_SESSION['createCurrentSociete'] : $userSoc['societe_nom'] ?></h2>
-                                        <h4 class="mt-5">
-                                            <?php if ($_SESSION['fk_emploi'] == 4) : ?>
-                                                <?= $_SESSION['marqueVehicule'] ?>
-                                            <?php else : ?>
-                                                <?= $_SESSION['marqueVehicule']; ?>
-                                            <?php endif; ?>
-                                        </h4>
-                                        <div class="mt-3 ">
-                                            <label class="form-label" for="modele">Modele du véhicule</label>
-                                            <select class="form-select" required aria-label="select example" id="validationTextarea" name="modele">
-                                                <option value="">Choisir un modèle</option>
-                                                <?php foreach ($modeles as $modele) : ?>
-                                                    <option value="<?= $modele['modele_nom']; ?>">
-                                                        <?= $modele['modele_nom']; ?>
+                    <form method="POST" class="was-validated" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+
+
+                        <div class="container ">
+                            <div class="row justify-content-between">
+
+                                <div class="border bg-whiteBlue p-3 col-md-5">
+
+                                    <h2 class="display-3">
+                                        <?php $userSoc =  getSocieteById($_SESSION['fk_societe']) ?>
+                                        <?= ($_SESSION['fk_emploi'] == 4) ?  $_SESSION['createCurrentSociete'] : $userSoc['societe_nom'] ?></h2>
+                                    <h4 class="mt-5">
+                                        <?php if ($_SESSION['fk_emploi'] == 4) : ?>
+                                            <?= $_SESSION['marqueVehicule'] ?>
+                                        <?php else : ?>
+                                            <?= $_SESSION['marqueVehicule']; ?>
+                                        <?php endif; ?>
+                                    </h4>
+                                    <div class="mt-3 ">
+                                        <label class="form-label" for="modele">Modele du véhicule</label>
+                                        <select class="form-select" required aria-label="select example" id="validationTextarea" name="modele">
+                                            <option value="">Choisir un modèle</option>
+                                            <?php foreach ($modeles as $modele) : ?>
+                                                <option value="<?= $modele['modele_nom']; ?>">
+                                                    <?= $modele['modele_nom']; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="type">Type du véhicule</label>
+                                        <select class="form-select" required aria-label="select example" name="type" id="">
+                                            <option value="">Choisir un type</option>
+                                            <?php foreach ($types as $type) : ?>
+                                                <?php if (!is_array($type)) : ?>
+                                                    <option value="<?= htmlspecialchars($type) ?>">
+                                                        <?= htmlspecialchars($type) ?>
+                                                    </option>
+                                                <?php elseif (!array_key_exists('type_nom', $type)) : ?>
+                                                    <option value="">
+                                                        La clé 'type_nom' n'existe pas dans le tableau <?= print_r($type, true) ?>
+                                                    </option>
+                                                <?php elseif (!is_string($type['type_nom'])) : ?>
+                                                    <option value="">
+                                                        La valeur de 'type_nom' dans le tableau <?= print_r($type, true) ?> n'est pas une chaîne de caractères
+                                                    </option>
+                                                <?php else : ?>
+                                                    <option value="<?= htmlspecialchars($type['type_nom']) ?>">
+                                                        <?= htmlspecialchars($type['type_nom']) ?>
+                                                    </option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <label for="type">Alias du véhicule</label>
+                                        <input class="form-control is-invalid" id="alias" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required type="text" name="alias" placeholder="Alias du véhicule">
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="border p-2 col-md-6">
+
+
+                                    <div class="mt-5">
+                                        <label class="form-label" for="plaqueImmatriculation">Plaque d'Immatriculation</label>
+                                        <input type="text" class="form-control is-invalid" id="validationImmatriculation" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required name="plaqueImmatriculation" pattern="[A-Z]{2}[0-9]{3}[A-Z]{2}" placeholder="immatriculation">
+                                    </div>
+
+
+                                    <div class="mt-3">
+                                        <label for="kilometrage">Kilometrage</label>
+                                        <input class="form-control is-invalid" id="validationImmatriculation" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required type="text" name="kilometrage" pattern="[0-9]*" placeholder="Kilometrage">
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <?php if ($_SESSION['fk_emploi'] == 4) : ?>
+                                            <label for="InventairePosition">Inventaire Position</label>
+                                            <select class="form-select" name="inventairePosition" id="">
+                                                <option selected> <?= $_SESSION['createCurrentSociete'] ?></option>
+                                                <?php foreach ($societes as $societe) : ?>
+                                                    <option value="<?= $societe['societe_nom']; ?>"><?= $societe['societe_nom']; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                        </div>
-                                        <div class="mt-3">
-                                            <label for="type">Type du véhicule</label>
-                                            <select class="form-select" required aria-label="select example" name="type" id="">
-                                                <option value="">Choisir un type</option>
-                                                <?php foreach ($types as $type) : ?>
-                                                    <?php if (!is_array($type)) : ?>
-                                                        <option value="<?= htmlspecialchars($type) ?>">
-                                                            <?= htmlspecialchars($type) ?>
-                                                        </option>
-                                                    <?php elseif (!array_key_exists('type_nom', $type)) : ?>
-                                                        <option value="">
-                                                            La clé 'type_nom' n'existe pas dans le tableau <?= print_r($type, true) ?>
-                                                        </option>
-                                                    <?php elseif (!is_string($type['type_nom'])) : ?>
-                                                        <option value="">
-                                                            La valeur de 'type_nom' dans le tableau <?= print_r($type, true) ?> n'est pas une chaîne de caractères
-                                                        </option>
-                                                    <?php else : ?>
-                                                        <option value="<?= htmlspecialchars($type['type_nom']) ?>">
-                                                            <?= htmlspecialchars($type['type_nom']) ?>
-                                                        </option>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <label for="type">Alias du véhicule</label>
-                                            <input class="form-control is-invalid" id="alias" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required type="text" name="alias" placeholder="Alias du véhicule">
-                                        </div>
-
-
+                                        <?php endif; ?>
                                     </div>
 
-                                    <!-- SECOND CARD -->
-                                    <div class="border p-2 col-md-6">
+                                    <div class="mt-3">
+                                        <div class="form-group">
 
-
-                                        <div class="mt-5">
-                                            <label class="form-label" for="plaqueImmatriculation">Plaque d'Immatriculation</label>
-                                            <input type="text" class="form-control is-invalid" id="validationImmatriculation" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required name="plaqueImmatriculation" pattern="[A-Z]{2}[0-9]{3}[A-Z]{2}" placeholder="immatriculation">
+                                            <label class="control-label" for="datemisecirculation">Date de mise en circulation </label>
+                                            <input class="form-control" id="date" name="datemisecirculation" type="date" value="<?= $currentDate ?>" />
                                         </div>
-
-
-                                        <div class="mt-3">
-                                            <label for="kilometrage">Kilometrage</label>
-                                            <input class="form-control is-invalid" id="validationImmatriculation" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required type="text" name="kilometrage" pattern="[0-9]*" placeholder="Kilometrage">
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <?php if ($_SESSION['fk_emploi'] == 4) : ?>
-                                                <label for="InventairePosition">Inventaire Position</label>
-                                                <select class="form-select" name="inventairePosition" id="">
-                                                    <option selected> <?= $_SESSION['createCurrentSociete'] ?></option>
-                                                    <?php foreach ($societes as $societe) : ?>
-                                                        <option value="<?= $societe['societe_nom']; ?>"><?= $societe['societe_nom']; ?>
-                                                        </option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            <?php endif; ?>
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <div class="form-group">
-                                                <!-- Date input -->
-                                                <label class="control-label" for="datemisecirculation">Date de mise en circulation </label>
-                                                <input class="form-control" id="date" name="datemisecirculation" type="date" value="<?= $currentDate ?>" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4 ">
-                                            <div class="form-group">
-                                                <!-- Date input -->
-                                                <label class="control-label" for="dateControleTechnique">Date dernier controle technique </label>
-                                                <input class="form-control" id="date" name="dateControleTechnique" type="date" value="" />
-                                            </div>
-                                        </div>
-
-
-
-                                        <!-- Submit button -->
-                                        <div class="w-95 mt-3">
-                                            <button class="btn btn-<?= $colorBtn ?> w-100 " name="createGestionnaire" type="submit">Créer le
-                                                véhicule</button>
-                                        </div>
-
-
                                     </div>
+
+                                    <div class="mt-4 ">
+                                        <div class="form-group">
+
+                                            <label class="control-label" for="dateControleTechnique">Date dernier controle technique </label>
+                                            <input class="form-control" id="date" name="dateControleTechnique" type="date" value="" />
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="w-95 mt-3">
+                                        <button class="btn btn-<?= $colorBtn ?> w-100 " name="createGestionnaire" type="submit">Créer le
+                                            véhicule</button>
+                                    </div>
+
+
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
 
-            <?php endif; ?>
+        <?php endif; ?>
 
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-            <script type="text/javascript">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
 
 
-            </script>
+        </script>
 </body>
 
 </html>
